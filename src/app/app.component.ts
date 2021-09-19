@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IpcService } from './services/ipc.service';
+import { HASH_ALGORITHMS } from './../../@common/hash-algorithms'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +9,7 @@ import { IpcService } from './services/ipc.service';
 export class AppComponent implements OnInit {
 
   public text: string = '';
-  public hashAlgorithms: string[] = ['sha1', 'sha224', 'sha256', 'sha384', 'sha512'];
+  public hashAlgorithms: string[] = HASH_ALGORITHMS;
   public hashSelect: string = this.hashAlgorithms[0];
   public encodings: string[] = ['hex', 'base64'];
   public encodingSelect: string = this.encodings[0];
