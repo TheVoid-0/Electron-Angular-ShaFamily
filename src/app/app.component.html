@@ -12,7 +12,7 @@
       </option>
     </select>
 
-    <select [(ngModel)]="encodingSelect" [value]="encodings[0]">
+    <select [(ngModel)]="encodingSelect">
       <option *ngFor="let encoding of encodings" [value]="encoding">
         {{encoding}}
       </option>

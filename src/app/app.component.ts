@@ -8,10 +8,10 @@ import { IpcService } from './services/ipc.service';
 export class AppComponent implements OnInit {
 
   public text: string = '';
-  public hashSelect: string = '';
   public hashAlgorithms: string[] = ['sha1', 'sha224', 'sha256', 'sha384', 'sha512'];
-  public encodingSelect: string = '';
+  public hashSelect: string = this.hashAlgorithms[0];
   public encodings: string[] = ['hex', 'base64'];
+  public encodingSelect: string = this.encodings[0];
   public hash: string = ''
 
   constructor(private _ipcService: IpcService) {
