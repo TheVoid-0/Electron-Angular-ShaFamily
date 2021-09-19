@@ -1,34 +1,23 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
-const url = require("url");
-const path = require("path");
-const {
-    createHash,
-} = require('crypto');
-
-let mainWindow
-
-const HASH_ALGORITHMS = require('./@common/hash-algorithms');
+import { app, BrowserWindow, ipcMain } from 'electron';
+import path = require('path');
+import { createHash } from 'crypto';
+import { HASH_ALGORITHMS } from './../@common/hash-algorithms';
 
 function createWindow() {
 
-    mainWindow = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'electron', 'preload.js'),
+            preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true,
             contextIsolation: false
         }
     })
-
-    mainWindow.loadFile(path.join(__dirname, '/dist/angular-ShaFamily/index.html'));
+    mainWindow.loadFile(path.join(__dirname, '..', '..', 'angular-ShaFamily/index.html'));
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools()
-
-    mainWindow.on('closed', function () {
-        mainWindow = null
-    })
+    mainWindow.webContents.openDevTools();
 
     console.log('algoritmos', HASH_ALGORITHMS)
     for (const algorithm of HASH_ALGORITHMS) {
@@ -92,12 +81,16 @@ function createWindow() {
     // })
 }
 
-app.on('ready', createWindow)
+app.whenReady().then(() => {
+    createWindow()
+
+    app.on('activate', function () {
+        // On macOS it's common to re-create a window in the app when the
+        // dock icon is clicked and there are no other windows open.
+        if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    })
+})
 
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
-})
-
-app.on('activate', function () {
-    if (mainWindow === null) createWindow()
 })

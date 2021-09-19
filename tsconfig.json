@@ -15,12 +15,16 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2017",
-    "module": "es2020",
+    "module": "commonJs", // was es2020 but for electron to work commonJs is needed
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
   },
+  "exclude": [
+    "node_modules",
+    "src" // Ajustar para o intellisense parar de reclamar
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
