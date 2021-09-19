@@ -1,0 +1,32 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+            "~@common/*": [
+                "../@common/*"
+            ]
+        },
+        "rootDirs": [
+            "./",
+            "../@common"
+        ],
+        "outDir": "../dist/",
+        "module": "es2020",
+        "types": [],
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+    },
+    "exclude": [
+        "src/test.ts",
+        "**/*.spec.ts",
+        "dist",
+        "app-builds",
+        "node_modules"
+    ],
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    }
+}

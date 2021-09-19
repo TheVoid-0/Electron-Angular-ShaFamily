@@ -1,9 +1,19 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
+  "buildOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
+    "paths": {
+      "~@common/*": [
+        "./@common/*"
+      ]
+    },
+    "rootDirs": [
+      "./src",
+      "./@common"
+    ],
+    // "baseUrl": "./",
+    "outDir": "./dist",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
@@ -12,10 +22,14 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2017",
     "module": "commonJs", // was es2020 but for electron to work commonJs is needed
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "lib": [
       "es2018",
       "dom"
@@ -25,10 +39,4 @@
     "node_modules",
     "src" // Ajustar para o intellisense parar de reclamar
   ],
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
 }

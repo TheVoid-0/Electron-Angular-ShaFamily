@@ -1,7 +1,11 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
-import path = require('path');
+import * as path from 'path';
 import { createHash } from 'crypto';
 import { HASH_ALGORITHMS } from './../@common/hash-algorithms';
+
+// detect serve mode
+const args = process.argv.slice(1);
+let serve: boolean = args.some(val => val === '--serve');
 
 function createWindow() {
 
@@ -14,7 +18,20 @@ function createWindow() {
             contextIsolation: false
         }
     })
-    mainWindow.loadFile(path.join(__dirname, '..', '..', 'angular-ShaFamily/index.html'));
+
+    if (serve) {
+
+        // get dynamic version from localhost:4200
+        require('electron-reload')/*(__dirname, {
+            // electron: require(`${__dirname}/node_modules/electron`)
+            electron: path.join(__dirname, 'node_modules/electron', 'electron'),
+        });*/
+        mainWindow.loadURL('http://localhost:4200');
+
+    } else {
+        mainWindow.loadFile(path.join(__dirname, '..', '..', 'angular-ShaFamily/index.html'));
+    }
+
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
