@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "tsc && electron ./dist/electron/main.js",
+    "start": "ng build && npm run electron",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

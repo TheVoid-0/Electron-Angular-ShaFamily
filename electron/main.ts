@@ -29,7 +29,7 @@ function createWindow() {
         mainWindow.loadURL('http://localhost:4200');
 
     } else {
-        mainWindow.loadFile(path.join(__dirname, '..', '..', 'angular-ShaFamily/index.html'));
+        mainWindow.loadFile(path.join(__dirname, '..', 'angular-ShaFamily/index.html'));
     }
 
 

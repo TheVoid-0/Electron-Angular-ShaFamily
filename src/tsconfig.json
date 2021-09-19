@@ -1,3 +1,4 @@
+// Arquivo necessário para o vsCode carregar corretamente as configurações para cada aplicação, nesse caso o angular (src/**)
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {

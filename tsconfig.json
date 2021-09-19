@@ -9,7 +9,7 @@
       ]
     },
     "rootDirs": [
-      "./src",
+      "./src", // <- necessário para a CLI do angular buildar corretamente
       "./@common"
     ],
     // "baseUrl": "./",
@@ -37,6 +37,6 @@
   },
   "exclude": [
     "node_modules",
-    "src" // Ajustar para o intellisense parar de reclamar
+    "src" // <- necessário para não recompilar o angular
   ],
 }
