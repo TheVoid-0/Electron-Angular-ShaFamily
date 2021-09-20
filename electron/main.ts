@@ -36,8 +36,8 @@ function createWindow() {
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
 
-    ipcMain.on('hash-page', () => {
-        createHashListener();
+    ipcMain.on('hash-page', (event, ...args) => {
+        createHashListener(event);
     })
 }
 

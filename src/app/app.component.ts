@@ -6,41 +6,42 @@ import { HASH_ALGORITHMS, ENCODINGS } from './../../@common/hash-algorithms'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnDestroy {
 
   public text: string = '';
   public hashAlgorithms: string[] = HASH_ALGORITHMS;
-  public hashSelect: string = this.hashAlgorithms[0];
+  public algorithmSelect: string = this.hashAlgorithms[0];
   public encodings: string[] = ENCODINGS;
   public encodingSelect: string = this.encodings[0];
   public hash: string = ''
+  public isElectronReady: boolean = false;
 
   constructor(private _ipcService: IpcService) {
     console.log('constructor code')
-    this.createElectronListeners();
-    this._ipcService.send('hash-page');
+
+    this._ipcService.initializePageListener('hash-page').subscribe((response) => {
+      //  Electron listeners foram inicializados e estão prontos para receber mensagens
+      console.log('electronReady code');
+      this.isElectronReady = true;
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   ngOnDestroy(): void {
     this._ipcService.removeAllFromPage('hash-page');
   }
-  ngOnInit(): void {
-  }
 
   criptografar() {
     console.log('criptografar');
-    console.log(this.text, this.hashSelect, this.encodingSelect);
-    this._ipcService.send(this.hashSelect, { text: this.text, encoding: this.encodingSelect });
-  }
-
-  createElectronListeners() {
-    this._ipcService.on('hash-page', 'hash-ready', (event: Electron.IpcMessageEvent, args: any) => {
-      console.log('hash-ready', args.hash);
-      this.hash = args.hash;
-    });
-
-    this._ipcService.on('hash-page', 'hash-error', (event: Electron.IpcMessageEvent, args: any) => {
-      console.log('hash-error', args.msg, args.error);
-    });
+    console.log(this.text, this.algorithmSelect, this.encodingSelect);
+    // this._ipcService.send(this.algorithmSelect, { text: this.text, encoding: this.encodingSelect });
+    this._ipcService.sendAndExpectResponse(this.algorithmSelect, { text: this.text, encoding: this.encodingSelect })
+      .subscribe((response) => {
+        console.log(this.algorithmSelect, 'response:', response);
+        this.hash = response.body.hash;
+      }, (error: any) => {
+        console.log(error);
+      });
   }
 }

@@ -6,7 +6,7 @@
   <div class="hash-select-wrapper">
     <input [(ngModel)]="text" #ctrl="ngModel" placeholder="Insira o texto para ser criptografado">
 
-    <select [(ngModel)]="hashSelect" [value]="hashAlgorithms[0]">
+    <select [(ngModel)]="algorithmSelect" [value]="hashAlgorithms[0]">
       <option *ngFor="let algorithm of hashAlgorithms" [value]="algorithm">
         {{algorithm}}
       </option>
