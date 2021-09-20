@@ -35,7 +35,6 @@ export class AppComponent implements OnDestroy {
   criptografar() {
     console.log('criptografar');
     console.log(this.text, this.algorithmSelect, this.encodingSelect);
-    // this._ipcService.send(this.algorithmSelect, { text: this.text, encoding: this.encodingSelect });
     this._ipcService.sendAndExpectResponse(this.algorithmSelect, { text: this.text, encoding: this.encodingSelect })
       .subscribe((response) => {
         console.log(this.algorithmSelect, 'response:', response);

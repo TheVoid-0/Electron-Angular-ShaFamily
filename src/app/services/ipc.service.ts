@@ -58,7 +58,14 @@ export class IpcService {
   }
 
   private createResponseListener(subscriber: Subscriber<IpcResponse>, channel: string) {
+    // Tempo máximo para obter uma resposta do Electron
+    let timeout = setTimeout(() => {
+      subscriber.error('Timeout');
+      subscriber.complete();
+    }, 3000);
+
     this._ipc?.on(`${channel}-ready`, (event, args) => {
+      clearTimeout(timeout);
 
       if (args?.error) {
         subscriber.error(args.message)
