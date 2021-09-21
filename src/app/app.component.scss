@@ -1,4 +1,4 @@
-.content { 
+.content {
   width: 100vw;
   height: 100vh;
   color: #393939;
@@ -7,11 +7,11 @@
   margin: auto;
 
   h1 {
-    margin-top: 50px!important;
+    margin-top: 50px !important;
   }
 
   span {
-    color: #9B9B9B;
+    color: #9b9b9b;
   }
 }
 .progress-wrapper {
@@ -21,7 +21,7 @@
 
   .text {
     position: absolute;
-    color: #9B9B9B;
+    color: #9b9b9b;
     font-weight: 100;
     line-height: 1;
 
@@ -31,56 +31,67 @@
     transform: translateY(-50%) translateX(-50%);
     font-size: 26px;
   }
-
-}
-
-round-progress { 
-  margin: auto;
 }
 
 .controls-wrapper {
   text-align: center;
   margin: auto;
 }
-  
-  .input { 
-    text-align: center;
-    margin: auto;
-    max-width: 250px;
-    display: block;
-    margin-bottom: 10px;
-  }
+
+.input {
+  text-align: center;
+  margin: auto;
+  max-width: 250px;
+  display: block;
+  margin-bottom: 10px;
+}
 
 .hash-select-wrapper {
-  margin-top: 30px!important;
+  margin-top: 30px !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}  
-
-input, select {
-  display: block;
-    background-color: #fff;
-    border: solid 1px #ededed;
-    font-size: 16px;
-    border-radius: 6px;
-    width: 400px;
-    margin-bottom: 15px!important;
-    padding: 10px!important;
 }
 
+input,
+select,
+#resultado {
+  display: block;
+  background-color: #fff;
+  border: solid 1px #ededed;
+  font-size: 16px;
+  border-radius: 6px;
+  width: 400px;
+  margin-bottom: 15px !important;
+  padding: 10px !important;
+}
+
+#resultado {
+  height: fit-content;
+  overflow-wrap: break-word;
+  text-align: left;
+}
+
+label {
+  display: block;
+  width: 400px;
+  text-align: start;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 2px !important;
+}
 select {
   width: 420px;
 }
 
 button {
-  margin-bottom: 15px!important;
+  margin-bottom: 15px !important;
   background-color: #ff005d;
   color: white;
   font-weight: 800;
   border: none;
-  padding: 10px!important;
+  padding: 10px !important;
   width: 420px;
   border-radius: 6px;
   cursor: pointer;

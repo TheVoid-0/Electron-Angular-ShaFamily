@@ -6,12 +6,14 @@
   <div class="hash-select-wrapper">
     <input [(ngModel)]="text" #ctrl="ngModel" placeholder="Insira o texto para ser criptografado">
 
+    <label for="select">Algoritmo SHA</label>
     <select [(ngModel)]="algorithmSelect" [value]="hashAlgorithms[0]">
       <option *ngFor="let algorithm of hashAlgorithms" [value]="algorithm">
         {{algorithm}}
       </option>
     </select>
 
+    <label for="select">codificação do texo</label>
     <select [(ngModel)]="encodingSelect">
       <option *ngFor="let encoding of encodings" [value]="encoding">
         {{encoding}}
@@ -20,7 +22,7 @@
 
     <button (click)="criptografar()">CRIPTOGRAFAR</button>
 
-    <input [(ngModel)]="hash" readonly type="text" placeholder="resultado">
+    <div id="resultado" placeholder="resultado">{{hash ? hash : 'resultado'}}</div>
   </div>
 
 
