@@ -13,7 +13,8 @@
     "electron:watch": "npm-run-all -p ng:serve electron:serve ",
     "electron:build:prod": "ng build --prod && tsc && electron ./dist/electron/main.js",
     "electron:build": "ng build && tsc",
-    "electron:serve": "wait-on http-get://localhost:4200/ && tsc && electron ./dist/electron/main.js --serve"
+    "electron:serve": "wait-on http-get://localhost:4200/ && tsc && electron ./dist/electron/main.js --watch",
+    "electron:rebuild": "./node_modules/.bin/electron-rebuild"
   },
   "private": true,
   "dependencies": {

@@ -12,7 +12,6 @@ type IpcResponse = {
 export class IpcService {
 
   private _ipc: IpcRenderer | undefined = void 0;
-  // private listeners: Array<{ page: string, channels: string[] }> = new Array<{ page: string, channels: string[] }>();
   private listeners: { [key: string]: string[] } = {};
 
   constructor() {

@@ -2,9 +2,9 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
 import { createHashListener } from './hash-algorithms';
 
-// detect serve mode
+// verifica se foi passado o argumento para dar auto-reload
 const args: string[] = process.argv.slice(1);
-let serve: boolean = args.some(val => val === '--serve');
+let watch: boolean = args.some(val => val === '--watch');
 
 function createWindow() {
 
@@ -19,9 +19,9 @@ function createWindow() {
         }
     })
 
-    if (serve) {
+    if (watch) {
 
-        // get dynamic version from localhost:4200
+        // Habilita o auto-reload do angular na janela da aplicação electron
         require('electron-reload')/*(__dirname, {
             // electron: require(`${__dirname}/node_modules/electron`)
             electron: path.join(__dirname, 'node_modules/electron', 'electron'),
@@ -33,7 +33,7 @@ function createWindow() {
     }
 
 
-    // Open the DevTools.
+    // Abre o inspecionador.
     mainWindow.webContents.openDevTools();
 
     ipcMain.on('hash-page', (event, ...args) => {
@@ -45,8 +45,8 @@ app.whenReady().then(() => {
     createWindow()
 
     app.on('activate', function () {
-        // On macOS it's common to re-create a window in the app when the
-        // dock icon is clicked and there are no other windows open.
+        // No macOS o comportamento padrão dos apps é recriar a janela
+        // ao clicar no ícone que fica na 'dock', caso não tenha nenhuma aberta.
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
 })
