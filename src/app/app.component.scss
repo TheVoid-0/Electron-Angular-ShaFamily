@@ -1,38 +1,47 @@
 .content { 
-    width: 500px;
-    height: 500px;
-    text-align: center;
-    padding: 50px;
-    margin: auto;
+  width: 100vw;
+  height: 100vh;
+  color: #393939;
+  text-align: center;
+  padding: 50px;
+  margin: auto;
+
+  h1 {
+    margin-top: 50px!important;
   }
-  .progress-wrapper {
-    position: relative;
-    margin: 20px auto;
-    font-size: 20px;
-  
-    .text {
-      position: absolute;
-      color: #9B9B9B;
-      font-weight: 100;
-      line-height: 1;
-  
-      top: 50%;
-      bottom: auto;
-      left: 50%;
-      transform: translateY(-50%) translateX(-50%);
-      font-size: 26px;
-    }
-  
+
+  span {
+    color: #9B9B9B;
   }
-  
-  round-progress { 
-    margin: auto;
+}
+.progress-wrapper {
+  position: relative;
+  margin: 20px auto;
+  font-size: 20px;
+
+  .text {
+    position: absolute;
+    color: #9B9B9B;
+    font-weight: 100;
+    line-height: 1;
+
+    top: 50%;
+    bottom: auto;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 26px;
   }
-  
-  .controls-wrapper {
-    text-align: center;
-    margin: auto;
-  }
+
+}
+
+round-progress { 
+  margin: auto;
+}
+
+.controls-wrapper {
+  text-align: center;
+  margin: auto;
+}
   
   .input { 
     text-align: center;
@@ -41,3 +50,38 @@
     display: block;
     margin-bottom: 10px;
   }
+
+.hash-select-wrapper {
+  margin-top: 30px!important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}  
+
+input, select {
+  display: block;
+    background-color: #fff;
+    border: solid 1px #ededed;
+    font-size: 16px;
+    border-radius: 6px;
+    width: 400px;
+    margin-bottom: 15px!important;
+    padding: 10px!important;
+}
+
+select {
+  width: 420px;
+}
+
+button {
+  margin-bottom: 15px!important;
+  background-color: #ff005d;
+  color: white;
+  font-weight: 800;
+  border: none;
+  padding: 10px!important;
+  width: 420px;
+  border-radius: 6px;
+  cursor: pointer;
+}

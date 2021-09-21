@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { IpcService } from './services/ipc.service';
 import { HASH_ALGORITHMS, ENCODINGS } from './../../@common/hash-algorithms'
 @Component({
@@ -16,7 +16,7 @@ export class AppComponent implements OnDestroy {
   public hash: string = ''
   public isElectronReady: boolean = false;
 
-  constructor(private _ipcService: IpcService) {
+  constructor(private _ipcService: IpcService, private changeDetectorRef: ChangeDetectorRef) {
     console.log('constructor code')
 
     this._ipcService.initializePageListener('hash-page').subscribe((response) => {
@@ -39,6 +39,7 @@ export class AppComponent implements OnDestroy {
       .subscribe((response) => {
         console.log(this.algorithmSelect, 'response:', response);
         this.hash = response.body.hash;
+        this.changeDetectorRef.detectChanges()
       }, (error: any) => {
         console.log(error);
       });
