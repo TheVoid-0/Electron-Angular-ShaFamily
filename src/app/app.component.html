@@ -22,7 +22,9 @@
 
     <button (click)="criptografar()">CRIPTOGRAFAR</button>
 
-    <div id="resultado" placeholder="resultado">{{hash ? hash : 'resultado'}}</div>
+    <div id="resultado" placeholder="resultado" [ngStyle]="{color: hash? null : '#666' }">
+      {{hash ? hash : 'resultado'}}
+    </div>
   </div>
 
 
