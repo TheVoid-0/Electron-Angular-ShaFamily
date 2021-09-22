@@ -5,6 +5,11 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 import { IpcService } from './services/ipc.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -13,6 +18,11 @@ import { IpcService } from './services/ipc.service';
   imports: [
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatInputModule,
+    MatRippleModule,
   ],
   providers: [IpcService],
   bootstrap: [AppComponent]

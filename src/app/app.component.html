@@ -4,23 +4,31 @@
   <span>Aplicação desenvolvida por: Diovanna Schell, Felipe Pasqualotto e Marco Moura</span>
 
   <div class="hash-select-wrapper">
-    <input [(ngModel)]="text" #ctrl="ngModel" placeholder="Insira o texto para ser criptografado">
+    <!-- <input [(ngModel)]="text" #ctrl="ngModel" placeholder="Insira o texto para ser criptografado"> -->
+    <mat-form-field appearance="outline" class="hash-form">
+      <mat-label>Insira o texto para ser criptografado</mat-label>
+      <input matInput [(ngModel)]="text" #ctrl="ngModel">
+    </mat-form-field>
 
-    <label for="select">Algoritmo SHA</label>
-    <select [(ngModel)]="algorithmSelect" [value]="hashAlgorithms[0]">
-      <option *ngFor="let algorithm of hashAlgorithms" [value]="algorithm">
-        {{algorithm}}
-      </option>
-    </select>
+    <mat-form-field appearance="outline" class="hash-form">
+      <mat-label>Algoritmo SHA</mat-label>
+      <mat-select [(ngModel)]="algorithmSelect" [value]="hashAlgorithms[0]">
+        <mat-option *ngFor="let algorithm of hashAlgorithms" [value]="algorithm">
+          {{algorithm}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-    <label for="select">codificação do texo</label>
-    <select [(ngModel)]="encodingSelect">
-      <option *ngFor="let encoding of encodings" [value]="encoding">
-        {{encoding}}
-      </option>
-    </select>
+    <mat-form-field appearance="outline" class="hash-form">
+      <mat-label>codificação do texo</mat-label>
+      <mat-select [(ngModel)]="encodingSelect" [value]="encodings[0]">
+        <mat-option *ngFor="let encoding of encodings" [value]="encoding">
+          {{encoding}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-    <button (click)="criptografar()">CRIPTOGRAFAR</button>
+    <button matRipple (click)="criptografar()">CRIPTOGRAFAR</button>
 
     <div id="resultado" placeholder="resultado" [ngStyle]="{color: hash? null : '#666' }">
       {{hash ? hash : 'resultado'}}

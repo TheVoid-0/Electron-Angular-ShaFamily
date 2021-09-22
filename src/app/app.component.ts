@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { IpcService } from './services/ipc.service';
 import { HASH_ALGORITHMS, ENCODINGS } from './../../@common/hash-algorithms'
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,9 +17,8 @@ export class AppComponent implements OnDestroy {
   public hash: string = ''
   public isElectronReady: boolean = false;
 
-  constructor(private _ipcService: IpcService, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private _ipcService: IpcService, private changeDetectorRef: ChangeDetectorRef, private _snackBar: MatSnackBar, private ngZone: NgZone) {
     console.log('constructor code')
-
     this._ipcService.initializePageListener('hash-page').subscribe((response) => {
       //  Electron listeners foram inicializados e estão prontos para receber mensagens
       console.log('electronReady code');
@@ -42,6 +42,9 @@ export class AppComponent implements OnDestroy {
         this.changeDetectorRef.detectChanges()
       }, (error: any) => {
         console.log(error);
+        this.ngZone.run(() => {
+          this._snackBar.open(error, 'fechar', { duration: 3000 });
+        })
       });
   }
 }
