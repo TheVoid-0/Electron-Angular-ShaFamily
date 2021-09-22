@@ -71,7 +71,7 @@ export class IpcService {
       } else {
         subscriber.next({ event, body: { ...args } });
       }
-      this._ipc?.removeAllListeners(channel);
+      this._ipc?.removeAllListeners(`${channel}-ready`);
       subscriber.complete();
     });
   }
@@ -87,6 +87,14 @@ export class IpcService {
     this._ipc?.send(`${page}-closed`);
   }
 
+  /**
+   * Envia uma mensagem para o electron indicando que a página foi fechada e deve limpar os listeners
+   * @param page página que os listener devem ser fechados
+   */
+  public removeMainListener(page: string): void {
+    this._ipc?.send(`${page}-closed`);
+  }
+
   public isAvailable(): boolean {
     return !!this._ipc;
   }
@@ -98,6 +106,8 @@ export class IpcService {
    * @param page nome da página na qual o electron precisa saber que foi inicializada. IMPORTANTE: esse nome deve ser igual ao que o listener do electron espera
    */
   public initializePageListener(page: string): Observable<IpcResponse> {
+    // Garante que haverá somente um listener da página no main process do electron
+    this.removeMainListener(page);
     return this.sendAndExpectResponse(page);
   }
 }

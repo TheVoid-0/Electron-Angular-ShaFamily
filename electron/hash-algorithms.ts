@@ -24,10 +24,12 @@ export const createHashListener = (event: IpcMainEvent) => {
         });
     }
 
+    // Remove todos os listeners da página quando ela fechar
     ipcMain.on('hash-page-closed', (event, args) => {
         for (const algorithm of HASH_ALGORITHMS) {
             ipcMain.removeAllListeners(algorithm);
         }
+        ipcMain.removeAllListeners('hash-page-closed');
     })
     event.sender.send('hash-page-ready');
 }
