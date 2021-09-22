@@ -4,6 +4,10 @@
   "main": "./dist/electron/main.js",
   "build": {
     "appId": "fedima.electron-angular-sha-family",
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
     "files": [
       "./dist/**/*"
     ]
