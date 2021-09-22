@@ -34,7 +34,7 @@ function createWindow() {
 
 
     // Abre o inspecionador.
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
     ipcMain.on('hash-page', (event, ...args) => {
         createHashListener(event);
